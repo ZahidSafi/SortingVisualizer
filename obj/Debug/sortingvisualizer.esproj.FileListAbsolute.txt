@@ -1,0 +1,2 @@
+C:\Users\zahid\source\repos\SortingVisualizer\SortingVisualizer\obj\Debug\sortingvisualizer.esproj.SuggestedBindingRedirects.cache
+C:\Users\zahid\source\repos\SortingVisualizer\SortingVisualizer\obj\Debug\sortingvisualizer.esproj.CoreCompileInputs.cache
