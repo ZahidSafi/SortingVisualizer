@@ -1,11 +1,36 @@
 .array-container {
-    position: absolute;
-    left: 100px
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    background-color: black;
 }
 
 .array-bar {
     width: 2px;
-    background-color: pink;
+    background-color: white;
     display: inline-block;
     margin: 0 1px;
+}
+
+
+header {
+    background-color: purple;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.btn {
+    
+    @apply font-bold py-2 px-4 rounded;
+}
+
+.btn-blue {
+    @apply bg-blue-500 text-white;
+}
+
+.btn-blue:hover {
+        @apply bg-blue-700;
 }
