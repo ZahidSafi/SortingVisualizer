@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
 .array-container {
     width: 100vw;
-    height: 95.5vh;
+    height: 95.8vh;
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
@@ -8,16 +10,70 @@
 }
 
 .array-bar {
-    width: 2px;
     background-color: white;
     display: inline-block;
     margin: 0 1px;
+    border-radius: 10px;
 }
 
 
 header {
-    background-color: purple;
-    color: white;
-    padding: 1rem;
-    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: rebeccapurple;
 }
+
+button {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: white;
+    color: rebeccapurple;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    margin-left: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    button:hover {
+        background-color: gray;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    button:active {
+        background-color: gray;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transform: translateY(1px);
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+
+.pause-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    outline: none;
+}
+
+.pause-icon {
+    background-color: #444;
+    width: 5px;
+    height: 20px;
+    margin: 0 2px;
+}
+
+.pause-button:hover .pause-icon {
+    background-color: #666;
+}
+

@@ -1,6 +1,6 @@
 import React from 'react';
 import { bubbleSort } from '../algorithms/bubbleSort';
-import './SortingVisualizer.css'
+import './SortingVisualizer.css';
 
 
 export default class SortingVisualizer extends React.Component {
@@ -28,16 +28,16 @@ export default class SortingVisualizer extends React.Component {
         const arrayBars = document.getElementsByClassName('array-bar');
         for (let i = 0; i < animations.length; i++) {
             let animation = animations[i];
-            if (animation.type == 'compare') {
+            if (animation.type === 'compare') {
                 arrayBars[animation.index1].style.backgroundColor = 'red';
                 arrayBars[animation.index2].style.backgroundColor = 'red';
             }
-            if (animation.type == 'swap') {
+            if (animation.type === 'swap') {
                 const tempHeight = arrayBars[animation.index1].style.height;
                 arrayBars[animation.index1].style.height = arrayBars[animation.index2].style.height;
                 arrayBars[animation.index2].style.height = tempHeight
             }
-            await new Promise((resolve) => setTimeout(resolve, 25));
+            await new Promise((resolve) => setTimeout(resolve, 0));
             arrayBars[animation.index1].style.backgroundColor = 'white';
             arrayBars[animation.index2].style.backgroundColor = 'white';
         }
@@ -58,6 +58,10 @@ export default class SortingVisualizer extends React.Component {
         return (
             <>
                 <header>
+                    <button class="pause-button">
+                        <div class="pause-icon"></div>
+                        <div class="pause-icon"></div>
+                    </button>
                     <button onClick={() => this.resetArray()}>
                         Generate New Array
                     </button>
