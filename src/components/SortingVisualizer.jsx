@@ -11,16 +11,25 @@ export default class SortingVisualizer extends React.Component {
         this.state = {
             array: [],
             timeout: 0,
+            numberOfBars: 100,
         };
+
+        this.changeNumberOfBars = this.changeNumberOfBars.bind(this);
     }
 
     componentDidMount() {
         this.resetArray();
     }
 
-    resetArray() {
+    changeNumberOfBars(event) {
+        this.setState({ numberOfBars: parseInt(event.target.value) }, () => {
+            this.resetArray(this.state.numberOfBars);
+        });
+    }
+
+    resetArray(numberOfBars) {
         const array = [];
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < numberOfBars; i++) {
             array.push(randomIntFromInterval(5, 1000));
         }
         this.setState({ array });
@@ -98,7 +107,9 @@ export default class SortingVisualizer extends React.Component {
 
     render() {
         const { array } = this.state;
-
+        const screenWidth = window.innerWidth;
+        const numberOfBars = array.length;
+        const barWidth = Math.floor(screenWidth / numberOfBars) - 2; 
         return (
             <>
                 <header>
@@ -106,7 +117,7 @@ export default class SortingVisualizer extends React.Component {
                     {/*    <div className="pause-icon"></div>*/}
                     {/*    <div className="pause-icon"></div>*/}
                     {/*</button>*/}
-                    <button onClick={() => this.resetArray()}>
+                    <button onClick={() => this.resetArray(this.state.numberOfBars)}>
                         Generate New Array
                     </button>
                     <select onChange={(event) => this.handleSort(event)} className="algorithms">
@@ -114,13 +125,22 @@ export default class SortingVisualizer extends React.Component {
                         <option value="bubble">Bubble Sort</option>
                         <option value="insertion">Insertion Sort</option>
                     </select>
+                    <label htmlFor="num-bars">Speed:</label>
                     <input type="range" min="0" max="100" value={this.state.timeout} onChange={(event) => this.changeTimeout(event)} />
+                    <label htmlFor="num-bars">Number of Bars:</label>
+                    <input
+                        type="range"
+                        min="10"
+                        max="800"
+                        value={this.state.numberOfBars}
+                        onChange={this.changeNumberOfBars}
+                    />
                 </header>
                 <div className="array-container">
                     {array.map((value, idx) => (
                         <div className="array-bar" key={idx} style={{
                             height: `${value}px`,
-                            width: '75px'
+                            width: `${barWidth}px`
                         }}>
                         </div>
                     ))}
