@@ -19,7 +19,7 @@ export default class SortingVisualizer extends React.Component {
 
     resetArray() {
         const array = [];
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 100; i++) {
             array.push(randomIntFromInterval(5, 1000));
         }
         this.setState({ array });
@@ -45,15 +45,15 @@ export default class SortingVisualizer extends React.Component {
                 arrayBars[animation.index1].style.height = `${animation.value}px`;
             }
             await new Promise((resolve) => setTimeout(resolve, 0));
-            if (!isThereACurrent) {
-                arrayBars[animation.index1].style.backgroundColor = 'white';
-            }
-           
+
+            arrayBars[animation.index1].style.backgroundColor = 'white';
+
+
             if (animation.type === 'compare' || animation.type === 'swap') {
                 arrayBars[animation.index2].style.backgroundColor = 'white';
             }
-           
-            
+
+
         }
     }
 
