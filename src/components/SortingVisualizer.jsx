@@ -1,5 +1,6 @@
 import React from 'react';
 import { bubbleSort } from '../algorithms/bubbleSort';
+import { insertionSort } from '../algorithms/insertionSort';
 import './SortingVisualizer.css';
 
 
@@ -28,6 +29,9 @@ export default class SortingVisualizer extends React.Component {
         const arrayBars = document.getElementsByClassName('array-bar');
         for (let i = 0; i < animations.length; i++) {
             let animation = animations[i];
+            if (animation.type === 'current') {
+                arrayBars[animation.index1].style.backgroundColor = 'green';
+            }
             if (animation.type === 'compare') {
                 arrayBars[animation.index1].style.backgroundColor = 'red';
                 arrayBars[animation.index2].style.backgroundColor = 'red';
@@ -37,14 +41,31 @@ export default class SortingVisualizer extends React.Component {
                 arrayBars[animation.index1].style.height = arrayBars[animation.index2].style.height;
                 arrayBars[animation.index2].style.height = tempHeight
             }
+            if (animation.type === 'overwrite') {
+                arrayBars[animation.index1].style.height = `${animation.value}px`;
+            }
             await new Promise((resolve) => setTimeout(resolve, 0));
-            arrayBars[animation.index1].style.backgroundColor = 'white';
-            arrayBars[animation.index2].style.backgroundColor = 'white';
+            if (!isThereACurrent) {
+                arrayBars[animation.index1].style.backgroundColor = 'white';
+            }
+           
+            if (animation.type === 'compare' || animation.type === 'swap') {
+                arrayBars[animation.index2].style.backgroundColor = 'white';
+            }
+           
+            
         }
     }
 
-    handleBubbleSort() {
-        const animations = bubbleSort(this.state.array);
+    handleSort(event) {
+        const value = event.target.value;
+        let animations = [];
+        if (value === 'bubble') {
+            animations = bubbleSort(this.state.array);
+        }
+        else if (value === 'insertion') {
+            animations = insertionSort(this.state.array);
+        }
         this.animateSort(animations);
     }
 
@@ -58,14 +79,18 @@ export default class SortingVisualizer extends React.Component {
         return (
             <>
                 <header>
-                    <button class="pause-button">
-                        <div class="pause-icon"></div>
-                        <div class="pause-icon"></div>
+                    <button className="pause-button">
+                        <div className="pause-icon"></div>
+                        <div className="pause-icon"></div>
                     </button>
                     <button onClick={() => this.resetArray()}>
                         Generate New Array
                     </button>
-                    <button onClick={() => this.handleBubbleSort()}>Bubble Sort</button>
+                    <select onChange={(event) => this.handleSort(event)} className="algorithms">
+                        <option value="">None</option>
+                        <option value="bubble">Bubble Sort</option>
+                        <option value="insertion">Insertion Sort</option>
+                    </select>
                 </header>
                 <div className="array-container">
                     {array.map((value, idx) => (
