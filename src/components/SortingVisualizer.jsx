@@ -102,10 +102,10 @@ export default class SortingVisualizer extends React.Component {
         return (
             <>
                 <header>
-                    <button className="pause-button">
-                        <div className="pause-icon"></div>
-                        <div className="pause-icon"></div>
-                    </button>
+                    {/*<button className="pause-button">*/}
+                    {/*    <div className="pause-icon"></div>*/}
+                    {/*    <div className="pause-icon"></div>*/}
+                    {/*</button>*/}
                     <button onClick={() => this.resetArray()}>
                         Generate New Array
                     </button>
