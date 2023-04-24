@@ -11,7 +11,7 @@ export default class SortingVisualizer extends React.Component {
         this.state = {
             array: [],
             timeout: 0,
-            numberOfBars: 100,
+            numberOfBars: 50,
         };
 
         this.changeNumberOfBars = this.changeNumberOfBars.bind(this);
@@ -29,11 +29,19 @@ export default class SortingVisualizer extends React.Component {
 
     resetArray(numberOfBars) {
         const array = [];
-        for (let i = 0; i < numberOfBars; i++) {
-            array.push(randomIntFromInterval(5, 1000));
+        for (let i = 5; i < numberOfBars; i++) {
+            array.push(i * 2);
         }
+        this.shuffleArray(array)
         this.setState({ array });
     }
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
 
     swap(arrayBars, animation) {
         const tempHeight = arrayBars[animation.index1].style.height;
@@ -109,7 +117,7 @@ export default class SortingVisualizer extends React.Component {
         const { array } = this.state;
         const screenWidth = window.innerWidth;
         const numberOfBars = array.length;
-        const barWidth = Math.floor(screenWidth / numberOfBars) - 2; 
+        const barWidth = Math.floor(screenWidth / numberOfBars) - 2;
         return (
             <>
                 <header>
@@ -131,7 +139,7 @@ export default class SortingVisualizer extends React.Component {
                     <input
                         type="range"
                         min="10"
-                        max="800"
+                        max="500"
                         value={this.state.numberOfBars}
                         onChange={this.changeNumberOfBars}
                     />
