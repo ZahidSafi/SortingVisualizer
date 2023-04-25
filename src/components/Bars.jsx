@@ -74,17 +74,17 @@ const Bars = (props) => {
         }
     }
     const barWidth = Math.floor(window.innerWidth / props.array.length) - 2;
-  return (
-      <div className="array-container" ref={arrayContainerRef}>
-          {props.array.map((value, idx) => (
-              <div className="array-bar" key={idx} style={{
-                  height: `${value}px`,
-                  width: `${barWidth}px`
-              }}>
-              </div>
-          ))}
-      </div>
-  );
+    return (
+        <div className="array-container" ref={arrayContainerRef}>
+            {props.array.map((value, idx) => (
+                <div className="array-bar" key={idx} style={{
+                    height: `${value}px`,
+                    width: `${barWidth}px`
+                }}>
+                </div>
+            ))}
+        </div>
+    );
 }
 
 export default Bars;

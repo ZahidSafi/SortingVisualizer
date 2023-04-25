@@ -57,7 +57,7 @@ const SortingVisualizer = () => {
                 onChangeAnimationDelay={changeAnimationDelay}
                 onSortSelected={handleSort}
                 numberOfBarsValue={numberOfBars}
-                onNumberOfBarChanged={changeNumberOfBars}/>
+                onNumberOfBarChanged={changeNumberOfBars} />
             <Bars array={array} currentSort={currentSort} animationDelayValue={animationDelay}
                 numberOfBarsValue={numberOfBars} />
 

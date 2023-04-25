@@ -34,7 +34,7 @@ const HeaderControls = (props) => {
                 <label htmlFor="num-bars">Speed:</label>
                 <input type="range" min="0" max="100" value={props.animationDelayValue} onChange={handleAnimationDelayChange} />
             </div>
-            
+
             <div className="number-of-bars">
                 <label htmlFor="num-bars">Number of Bars:</label>
                 <input
@@ -45,7 +45,7 @@ const HeaderControls = (props) => {
                     onChange={handleNumberOfBarChange}
                 />
             </div>
-            
+
         </header>
     );
 }
