@@ -2,7 +2,7 @@
 
 .array-container {
     width: 100vw;
-    height: 95.8vh;
+    height: 100vh;
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
@@ -23,6 +23,12 @@ header {
     align-items: center;
     padding: 10px;
     background-color: rebeccapurple;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 100;
 }
 
 button {
@@ -49,30 +55,20 @@ button {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transform: translateY(1px);
     }
+ 
 
-    button:focus {
-        outline: none;
-    }
-
-
-.pause-button {
+select {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
     background-color: white;
+    color: rebeccapurple;
     border: none;
+    padding: 0.5rem 1.5rem;
+    margin-left: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    outline: none;
 }
 
-.pause-icon {
-    background-color: #444;
-    width: 5px;
-    height: 20px;
-    margin: 0 2px;
-}
 
-.pause-button:hover .pause-icon {
-    background-color: #666;
-}
+

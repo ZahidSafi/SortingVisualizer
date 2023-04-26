@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useEffect, useRef } from 'react';
 import { bubbleSort } from '../algorithms/bubbleSort';
 import { insertionSort } from '../algorithms/insertionSort';
+import { mergeSort } from '../algorithms/mergeSort';
 
 const Bars = (props) => {
     const arrayContainerRef = useRef(null);
@@ -9,7 +10,7 @@ const Bars = (props) => {
 
     useEffect(() => {
         handleSort(props.currentSort);
-    }, [props.currentSort]);
+    });
 
     const swap = (arrayBars, animation) => {
         const tempHeight = arrayBars[animation.index1].style.height;
@@ -64,14 +65,47 @@ const Bars = (props) => {
         }
     }
 
+    const animateMergeSort = async (animations) => {
+        const arrayBars = arrayContainerRef.current.getElementsByClassName('array-bar');
+        for (const animation of animations) {
+            if (animation.type === 'compare') {
+                compare(arrayBars, animation);
+                await delay(props.animationDelayValue);
+            }
+            else if (animation.type === 'overwrite') {
+                arrayBars[animation.index1].style.height = `${animation.value}px`;
+                arrayBars[animation.index1].style.backgroundColor = 'red';
+                await delay(props.animationDelayValue);
+                arrayBars[animation.index1].style.backgroundColor = 'white';
+            }
+            
+           
 
-    const handleSort = (currentSort) => {
+        }
+    }
+
+    const checkBars = async () => {
+        const arrayBars = arrayContainerRef.current.getElementsByClassName('array-bar');
+        for (let i = 0; i < arrayBars.length; i++) {
+            arrayBars[i].style.backgroundColor = 'green';
+            await delay(props.animationDelayValue);
+        }
+    }
+
+    const handleSort = async (currentSort) => {
         if (currentSort === 'bubble') {
-            animateBubbleSort(bubbleSort(props.array));
+            await animateBubbleSort(bubbleSort(props.array));
         }
         else if (currentSort === 'insertion') {
-            animateInsertionSort(insertionSort(props.array));
+            await animateInsertionSort(insertionSort(props.array));
         }
+        else if (currentSort === 'merge') {
+            await animateMergeSort(mergeSort(props.array));
+        }
+        if (currentSort !== '') {
+           await checkBars();
+        }
+        
     }
     const barWidth = Math.floor(window.innerWidth / props.array.length) - 2;
     return (
