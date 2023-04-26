@@ -13,7 +13,6 @@
     background-color: white;
     display: inline-block;
     margin: 0 1px;
-    border-radius: 5px;
 }
 
 
@@ -55,7 +54,7 @@ button {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transform: translateY(1px);
     }
- 
+
 
 select {
     font-family: 'Roboto', sans-serif;
@@ -70,5 +69,37 @@ select {
     cursor: pointer;
 }
 
+.number-of-bars,
+.animation-delay {
+    display: flex;
+    align-items: center;
+    width: auto;
+    position: relative;
+    margin-right: 20px;
+    margin-left: 10px;
+}
 
+.range-slider-value {
+    display: inline-block;
+    line-height: 20px;
+    width: 60px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    background: #2c3e50;
+    padding: 5px 10px;
+    margin-left: 8px;
+    position: relative;
+}
 
+    .range-slider-value:after {
+        position: absolute;
+        left: -7px;
+        top: 8px;
+        width: 0;
+        height: 0;
+        border-top: 7px solid transparent;
+        border-right: 7px solid #2c3e50;
+        border-bottom: 7px solid transparent;
+        content: "";
+    }

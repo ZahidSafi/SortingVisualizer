@@ -2,6 +2,7 @@ import React, {useEffect, useRef } from 'react';
 import { bubbleSort } from '../algorithms/bubbleSort';
 import { insertionSort } from '../algorithms/insertionSort';
 import { mergeSort } from '../algorithms/mergeSort';
+import { quickSort } from '../algorithms/quickSort';
 
 const Bars = (props) => {
     const arrayContainerRef = useRef(null);
@@ -84,6 +85,27 @@ const Bars = (props) => {
         }
     }
 
+    const animateQuickSort = async (animations) => {
+        const arrayBars = arrayContainerRef.current.getElementsByClassName('array-bar');
+        for (const animation of animations) {
+            if (animation.type === 'current') {
+                arrayBars[animation.index1].style.backgroundColor = 'green';
+                for (const subAnimation of animation.subAnimations) {
+                    if (subAnimation.type === 'compare') {
+                        compare(arrayBars, subAnimation);
+                        await delay(props.animationDelayValue);
+                        arrayBars[subAnimation.index1].style.backgroundColor = 'white';
+                        arrayBars[subAnimation.index2].style.backgroundColor = 'white';
+                    }
+                    if (subAnimation.type === 'swap') {
+                        swap(arrayBars, subAnimation)
+                    }
+                }
+                arrayBars[animation.index1].style.backgroundColor = 'white';
+            }
+        }
+    }
+
     const checkBars = async () => {
         const arrayBars = arrayContainerRef.current.getElementsByClassName('array-bar');
         for (let i = 0; i < arrayBars.length; i++) {
@@ -101,6 +123,9 @@ const Bars = (props) => {
         }
         else if (currentSort === 'merge') {
             await animateMergeSort(mergeSort(props.array));
+        }
+        else if (currentSort === 'quick') {
+            await animateQuickSort(quickSort(props.array));
         }
         if (currentSort !== '') {
            await checkBars();

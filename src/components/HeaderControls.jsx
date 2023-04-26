@@ -29,22 +29,24 @@ const HeaderControls = (props) => {
                     <option value="bubble">Bubble Sort</option>
                     <option value="insertion">Insertion Sort</option>
                     <option value="merge">Merge Sort</option>
+                    <option value="quick">Quick Sort</option>
                 </select>
             </div>
             <div className="animation-delay">
-                <input type="range" min="0" max="100" value={props.animationDelayValue} onChange={handleAnimationDelayChange} />
-                <span>{props.animationDelayValue}</span>
+                <input className="range-slider" type="range" min="0" max="100" value={props.animationDelayValue} onChange={handleAnimationDelayChange} />
+                <span className = "range-slider-value">{props.animationDelayValue}</span>
             </div>
 
             <div className="number-of-bars">
                 <input
+                    className="range-slider"
                     type="range"
                     min="10"
                     max="500"
                     value={props.numberOfBarsValue}
                     onChange={handleNumberOfBarChange}
                 />
-                <span>{props.numberOfBarsValue}</span>
+                <span className="range-slider-value">{props.numberOfBarsValue}</span>
             </div>
 
         </header>
