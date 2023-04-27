@@ -20,11 +20,11 @@ const HeaderControls = (props) => {
 
     return (
         <header>
-            <button onClick={handleArrayReset}>
+            <button disabled={props.isAnimationOn} onClick={handleArrayReset}>
                 Generate New Array
             </button>
             <div className="algorithms-select">
-                <select onChange={handleSortSelected} className="algorithms">
+                <select disabled={props.isAnimationOn} onChange={handleSortSelected} className="algorithms">
                     <option value="">Select Sort</option>
                     <option value="bubble">Bubble Sort</option>
                     <option value="insertion">Insertion Sort</option>
@@ -33,16 +33,16 @@ const HeaderControls = (props) => {
                 </select>
             </div>
             <div className="animation-delay">
-                <input className="range-slider" type="range" min="0" max="100" value={props.animationDelayValue} onChange={handleAnimationDelayChange} />
+                <input disabled={props.isAnimationOn} className="range-slider" type="range" min="0" max="100" value={props.animationDelayValue} onChange={handleAnimationDelayChange} />
                 <span className = "range-slider-value">{props.animationDelayValue}</span>
             </div>
 
             <div className="number-of-bars">
-                <input
+                <input disabled={props.isAnimationOn}
                     className="range-slider"
                     type="range"
-                    min="10"
-                    max="500"
+                    min="200"
+                    max="600"
                     value={props.numberOfBarsValue}
                     onChange={handleNumberOfBarChange}
                 />

@@ -6,6 +6,7 @@ import './SortingVisualizer.css';
 
 const SortingVisualizer = () => {
     const [array, setArray] = useState([]);
+    const [isAnimationOn, setIsAnimationOn] = useState(false);
     const [animationDelay, setAnimationDelay] = useState(0);
     const [numberOfBars, setNumberOfBars] = useState(200);
     const [currentSort, setCurrentSort] = useState('');
@@ -28,7 +29,7 @@ const SortingVisualizer = () => {
     const resetArray = (numberOfBars) => {
         const array = [];
         for (let i = 5; i < numberOfBars; i++) {
-            array.push(i * 2);
+            array.push(i);
         }
         shuffleArray(array)
         setArray(array);
@@ -47,6 +48,7 @@ const SortingVisualizer = () => {
 
     const handleSort = (event) => {
         setCurrentSort(event.target.value);
+        setIsAnimationOn(true)
     }
 
     return (
@@ -57,9 +59,11 @@ const SortingVisualizer = () => {
                 onChangeAnimationDelay={changeAnimationDelay}
                 onSortSelected={handleSort}
                 numberOfBarsValue={numberOfBars}
-                onNumberOfBarChanged={changeNumberOfBars} />
+                onNumberOfBarChanged={changeNumberOfBars}
+                isAnimationOn={isAnimationOn}/>
             <Bars array={array} currentSort={currentSort} animationDelayValue={animationDelay}
-                numberOfBarsValue={numberOfBars} />
+                numberOfBarsValue={numberOfBars}
+                onIsSetAnimationOn={setIsAnimationOn}/>
 
         </>
     )

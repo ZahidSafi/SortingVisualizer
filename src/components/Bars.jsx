@@ -1,4 +1,4 @@
-import React, {useEffect, useRef } from 'react';
+import React, {useEffect, useRef, useState } from 'react';
 import { bubbleSort } from '../algorithms/bubbleSort';
 import { insertionSort } from '../algorithms/insertionSort';
 import { mergeSort } from '../algorithms/mergeSort';
@@ -11,7 +11,7 @@ const Bars = (props) => {
 
     useEffect(() => {
         handleSort(props.currentSort);
-    });
+    }, [props.currentSort]);
 
     const swap = (arrayBars, animation) => {
         const tempHeight = arrayBars[animation.index1].style.height;
@@ -79,9 +79,6 @@ const Bars = (props) => {
                 await delay(props.animationDelayValue);
                 arrayBars[animation.index1].style.backgroundColor = 'white';
             }
-            
-           
-
         }
     }
 
@@ -130,15 +127,19 @@ const Bars = (props) => {
         if (currentSort !== '') {
            await checkBars();
         }
-        
+        const arrayBars = arrayContainerRef.current.getElementsByClassName('array-bar');
+        for (let i = 0; i < arrayBars.length; i++) {
+            arrayBars[i].style.backgroundColor = 'white';
+        }
+        props.onIsSetAnimationOn(false);
     }
-    const barWidth = Math.floor(window.innerWidth / props.array.length) - 2;
+    const barWidth = Math.min(100 / props.array.length, 10);
     return (
         <div className="array-container" ref={arrayContainerRef}>
             {props.array.map((value, idx) => (
                 <div className="array-bar" key={idx} style={{
-                    height: `${value}px`,
-                    width: `${barWidth}px`
+                    height: `${(value / props.numberOfBarsValue) * 100}%`,
+                    width: `${barWidth}%`
                 }}>
                 </div>
             ))}

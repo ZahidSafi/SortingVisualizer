@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
 .array-container {
-    width: 100vw;
-    height: 100vh;
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 100px);
+    margin-top: 20px;
+    padding-top:80px;
     display: flex;
-    justify-content: space-around;
     align-items: flex-end;
     background-color: black;
 }
@@ -12,7 +14,7 @@
 .array-bar {
     background-color: white;
     display: inline-block;
-    margin: 0 1px;
+ 
 }
 
 
@@ -27,9 +29,10 @@ header {
     left: 0;
     width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 100;
+    z-index: 1000;
 }
 
+select,
 button {
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
@@ -45,7 +48,6 @@ button {
 }
 
     button:hover {
-        background-color: gray;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
@@ -55,19 +57,14 @@ button {
         transform: translateY(1px);
     }
 
+    button:disabled {
+        background-color: gray;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transform: translateY(1px);
+    }
 
-select {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    background-color: white;
-    color: rebeccapurple;
-    border: none;
-    padding: 0.5rem 1.5rem;
-    margin-left: 5px;
-    border-radius: 4px;
-    cursor: pointer;
-}
+
+
 
 .number-of-bars,
 .animation-delay {
@@ -103,3 +100,5 @@ select {
         border-bottom: 7px solid transparent;
         content: "";
     }
+
+
